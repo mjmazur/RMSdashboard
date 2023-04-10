@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>821</width>
-    <height>468</height>
+    <width>1141</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="tabletTracking">
@@ -29,15 +29,18 @@
       <widget class="QLabel" name="image1_lbl">
        <property name="minimumSize">
         <size>
-         <width>320</width>
-         <height>180</height>
+         <width>480</width>
+         <height>270</height>
         </size>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Image 1</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -45,15 +48,18 @@
       <widget class="QLabel" name="image2_lbl">
        <property name="minimumSize">
         <size>
-         <width>320</width>
-         <height>180</height>
+         <width>480</width>
+         <height>270</height>
         </size>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Image 2</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -61,15 +67,18 @@
       <widget class="QLabel" name="image3_lbl">
        <property name="minimumSize">
         <size>
-         <width>320</width>
-         <height>180</height>
+         <width>480</width>
+         <height>270</height>
         </size>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Image 3</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -77,15 +86,18 @@
       <widget class="QLabel" name="image4_lbl">
        <property name="minimumSize">
         <size>
-         <width>320</width>
-         <height>180</height>
+         <width>480</width>
+         <height>270</height>
         </size>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Image 4</string>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
