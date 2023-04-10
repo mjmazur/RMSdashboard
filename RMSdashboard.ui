@@ -26,7 +26,7 @@
    <item row="0" column="0" rowspan="3">
     <layout class="QGridLayout" name="gridLayout_2">
      <item row="0" column="0">
-      <widget class="QGraphicsView" name="graphicsView">
+      <widget class="QGraphicsView" name="image1_gv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -48,7 +48,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QGraphicsView" name="graphicsView_2">
+      <widget class="QGraphicsView" name="image2_gv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -70,7 +70,7 @@
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QGraphicsView" name="graphicsView_3">
+      <widget class="QGraphicsView" name="image3_gv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -86,7 +86,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QGraphicsView" name="graphicsView_4">
+      <widget class="QGraphicsView" name="image4_gv">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
@@ -215,51 +215,61 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="start_capture_btn">
        <property name="text">
         <string>Start Capture</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="kill_capture_btn">
        <property name="text">
         <string>Kill Capture</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="ff_viewer_btn">
        <property name="text">
         <string>FF Viewer</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="reprocess_btn">
        <property name="text">
         <string>Reprocess</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="edit_config_btn">
        <property name="text">
-        <string>Open Config</string>
+        <string>Edit Config</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="last_night_data_btn">
        <property name="text">
         <string>Last Night's Data</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="data_dir_button">
        <property name="text">
         <string>Data Directory</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="reboot_btn">
+       <property name="text">
+        <string>Reboot</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
