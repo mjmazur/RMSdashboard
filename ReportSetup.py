@@ -14,7 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_EmailReportDialog(object):
     def setupUi(self, EmailReportDialog):
         EmailReportDialog.setObjectName("EmailReportDialog")
-        EmailReportDialog.resize(400, 300)
+        EmailReportDialog.setWindowModality(QtCore.Qt.NonModal)
+        EmailReportDialog.resize(400, 312)
         self.horizontalLayoutWidget = QtWidgets.QWidget(EmailReportDialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 381, 251))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -74,13 +75,25 @@ class Ui_EmailReportDialog(object):
         self.checkBox_2 = QtWidgets.QCheckBox(self.horizontalLayoutWidget)
         self.checkBox_2.setObjectName("checkBox_2")
         self.verticalLayout_2.addWidget(self.checkBox_2)
+        self.horizontalLayoutWidget_2 = QtWidgets.QWidget(EmailReportDialog)
+        self.horizontalLayoutWidget_2.setGeometry(QtCore.QRect(10, 270, 381, 41))
+        self.horizontalLayoutWidget_2.setObjectName("horizontalLayoutWidget_2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_2)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.report_setup_save_btn = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.report_setup_save_btn.setObjectName("report_setup_save_btn")
+        self.horizontalLayout.addWidget(self.report_setup_save_btn)
+        self.report_setup_cancel_btn = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
+        self.report_setup_cancel_btn.setObjectName("report_setup_cancel_btn")
+        self.horizontalLayout.addWidget(self.report_setup_cancel_btn)
 
         self.retranslateUi(EmailReportDialog)
         QtCore.QMetaObject.connectSlotsByName(EmailReportDialog)
 
     def retranslateUi(self, EmailReportDialog):
         _translate = QtCore.QCoreApplication.translate
-        EmailReportDialog.setWindowTitle(_translate("EmailReportDialog", "Dialog"))
+        EmailReportDialog.setWindowTitle(_translate("EmailReportDialog", "Reporting Setup"))
         self.label.setText(_translate("EmailReportDialog", "To:"))
         self.label_4.setText(_translate("EmailReportDialog", "CC:"))
         self.label_5.setText(_translate("EmailReportDialog", "Subject:"))
@@ -88,3 +101,5 @@ class Ui_EmailReportDialog(object):
         self.label_3.setText(_translate("EmailReportDialog", "SMTP Password:"))
         self.checkBox.setText(_translate("EmailReportDialog", "Attach timelapse video"))
         self.checkBox_2.setText(_translate("EmailReportDialog", "Attach diagnostic images"))
+        self.report_setup_save_btn.setText(_translate("EmailReportDialog", "Save"))
+        self.report_setup_cancel_btn.setText(_translate("EmailReportDialog", "Cancel"))
