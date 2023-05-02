@@ -15,11 +15,6 @@ class Ui_EmailReportDialog(object):
     def setupUi(self, EmailReportDialog):
         EmailReportDialog.setObjectName("EmailReportDialog")
         EmailReportDialog.resize(400, 300)
-        self.buttonBox = QtWidgets.QDialogButtonBox(EmailReportDialog)
-        self.buttonBox.setGeometry(QtCore.QRect(50, 260, 341, 32))
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
         self.horizontalLayoutWidget = QtWidgets.QWidget(EmailReportDialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 381, 251))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -81,8 +76,6 @@ class Ui_EmailReportDialog(object):
         self.verticalLayout_2.addWidget(self.checkBox_2)
 
         self.retranslateUi(EmailReportDialog)
-        self.buttonBox.accepted.connect(EmailReportDialog.accept) # type: ignore
-        self.buttonBox.rejected.connect(EmailReportDialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(EmailReportDialog)
 
     def retranslateUi(self, EmailReportDialog):
