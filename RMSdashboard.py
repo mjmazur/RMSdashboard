@@ -118,7 +118,11 @@ class Ui(QtWidgets.QDialog):
 		subprocess.run(['x-terminal-emulator', '-e', '~/source/LCAM/Scripts/CMNbinViewer.sh'])
 
 	def emailReportToggle(self):
-		print('Test')
+		self.window = QtWidgets.QMainWindow()
+		self.ui = Ui_EmailReportDialog()
+		self.ui.setupUi(self.window)
+		self.window.show()
+
 	
 if __name__ == "__main__":
 	app = QtWidgets.QApplication(sys.argv)
