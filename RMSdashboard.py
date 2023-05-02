@@ -61,7 +61,7 @@ class Ui(QtWidgets.QDialog):
 		self.last_night_data_btn.clicked.connect(self.openLastNightDir)
 		self.data_dir_btn.clicked.connect(self.openDataDir)
 		self.reboot_btn.clicked.connect(self.rebootSystem)
-		self.email_report_cb.toggled.connect(self.setEmailReporting)
+		self.email_report_cb.toggled.connect(self.emailReportToggle)
 		
 		# Read/parse dashboard coniguration file
 		
@@ -117,7 +117,7 @@ class Ui(QtWidgets.QDialog):
 		print('opening ff viewer')
 		subprocess.run(['x-terminal-emulator', '-e', '~/source/LCAM/Scripts/CMNbinViewer.sh'])
 
-	def setEmailReporting(self):
+	def emailReportToggle(self):
 		print('Test')
 	
 if __name__ == "__main__":
