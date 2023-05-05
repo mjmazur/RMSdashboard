@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1209</width>
-    <height>578</height>
+    <width>1210</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="tabletTracking">
@@ -221,8 +221,99 @@
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Cam4</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Cam3</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Cam 2</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>969</width>
+         <height>549</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="minimumSize">
+           <size>
+            <width>480</width>
+            <height>270</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="label_14">
+          <property name="minimumSize">
+           <size>
+            <width>480</width>
+            <height>270</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_15">
+          <property name="minimumSize">
+           <size>
+            <width>480</width>
+            <height>270</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_16">
+          <property name="minimumSize">
+           <size>
+            <width>480</width>
+            <height>270</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Cam 1</string>
@@ -316,87 +407,6 @@
        </layout>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>Cam 2</string>
-      </attribute>
-      <widget class="QWidget" name="gridLayoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>969</width>
-         <height>549</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_13">
-          <property name="minimumSize">
-           <size>
-            <width>480</width>
-            <height>270</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_14">
-          <property name="minimumSize">
-           <size>
-            <width>480</width>
-            <height>270</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_15">
-          <property name="minimumSize">
-           <size>
-            <width>480</width>
-            <height>270</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="label_16">
-          <property name="minimumSize">
-           <size>
-            <width>480</width>
-            <height>270</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
     </widget>
    </item>
    <item row="4" column="1">
@@ -405,6 +415,20 @@
       <widget class="QCheckBox" name="email_report_cb">
        <property name="text">
         <string>Daily Email Report</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setup_reporting_btn">
+       <property name="text">
+        <string>Setup Reporting</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setup_system_btn">
+       <property name="text">
+        <string>Setup System</string>
        </property>
       </widget>
      </item>
