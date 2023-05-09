@@ -24,46 +24,18 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Camera List:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="text">
-         <string>CA0001,CA0002,CA0003,CA0004</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Clients:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_2">
-        <property name="text">
-         <string>localhost,localhost,192.168.0.101,192.168.0.102</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="lineEdit_3"/>
-      </item>
-     </layout>
+     <widget class="QCheckBox" name="email_report_cbox">
+      <property name="text">
+       <string>Email daily report</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="i_am_host_cbox">
+      <property name="text">
+       <string>This is the host machine</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="Line" name="line">
@@ -73,18 +45,46 @@
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox">
-      <property name="text">
-       <string>This is the host machine</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QCheckBox" name="checkBox_2">
-      <property name="text">
-       <string>CheckBox</string>
-      </property>
-     </widget>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Camera List:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="camera_list_edit">
+        <property name="text">
+         <string>CA0001,CA0002,CA0003,CA0004</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Clients:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="client_list_edit">
+        <property name="text">
+         <string>localhost,localhost,192.168.0.101,192.168.0.102</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_3"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -99,14 +99,14 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="save_system_setup_btn">
       <property name="text">
        <string>Save</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="cancel_system_setup_btn">
       <property name="text">
        <string>Cancel</string>
       </property>

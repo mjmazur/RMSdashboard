@@ -51,7 +51,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit"/>
+       <widget class="QLineEdit" name="email_to_edit"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_4">
@@ -61,7 +61,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_4"/>
+       <widget class="QLineEdit" name="email_cc_edit"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_5">
@@ -71,7 +71,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="lineEdit_5"/>
+       <widget class="QLineEdit" name="email_subject_edit"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_2">
@@ -84,7 +84,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEdit_2"/>
+       <widget class="QLineEdit" name="smtp_address_edit"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_3">
@@ -97,7 +97,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QLineEdit" name="lineEdit_3"/>
+       <widget class="QLineEdit" name="smtp_pass_edit"/>
       </item>
      </layout>
     </item>
@@ -109,14 +109,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="email_attach_video_cbox">
       <property name="text">
        <string>Attach timelapse video</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="checkBox_2">
+     <widget class="QCheckBox" name="email_attach_images_cbox">
       <property name="text">
        <string>Attach diagnostic images</string>
       </property>
@@ -135,14 +135,14 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="report_setup_save_btn">
+     <widget class="QPushButton" name="save_report_setup_btn">
       <property name="text">
        <string>Save</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="report_setup_cancel_btn">
+     <widget class="QPushButton" name="cancel_report_setup_btn">
       <property name="text">
        <string>Cancel</string>
       </property>
