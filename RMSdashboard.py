@@ -12,6 +12,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 from ReportSetup import Ui_EmailReportDialog
+from SystemSetup import Ui_SystemSetupDialog
 
 try:
 	# Python 3
@@ -63,6 +64,9 @@ class Ui(QtWidgets.QDialog):
 		self.reboot_btn.clicked.connect(self.rebootSystem)
 		self.email_report_cb.toggled.connect(self.emailReportToggle)
 		
+
+		self.setup_reporting_btn.clicked.connect(self.reportingSetup)
+		self.setup_system_btn.clicked.connect(self.systemSetup)
 		# Read/parse dashboard coniguration file
 		
 		# Read/parse RMS configuration file
@@ -120,6 +124,18 @@ class Ui(QtWidgets.QDialog):
 	def emailReportToggle(self):
 		self.window = QtWidgets.QMainWindow()
 		self.ui = Ui_EmailReportDialog()
+		self.ui.setupUi(self.window)
+		self.window.show()
+
+	def reportingSetup(self):
+		self.window = QtWidgets.QMainWindow()
+		self.ui = Ui_EmailReportDialog()
+		self.ui.setupUi(self.window)
+		self.window.show()
+
+	def systemSetup(self):
+		self.window = QtWidgets.QMainWindow()
+		self.ui = Ui_SystemSetupDialog()
 		self.ui.setupUi(self.window)
 		self.window.show()
 
