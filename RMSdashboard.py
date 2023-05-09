@@ -62,15 +62,42 @@ class Ui(QtWidgets.QDialog):
 		self.last_night_data_btn.clicked.connect(self.openLastNightDir)
 		self.data_dir_btn.clicked.connect(self.openDataDir)
 		self.reboot_btn.clicked.connect(self.rebootSystem)
-		self.email_report_cb.toggled.connect(self.emailReportToggle)
-		
-
 		self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
+
 		# Read/parse dashboard coniguration file
-		
+		dashconfig = 
+
 		# Read/parse RMS configuration file
 		
+	def parseSystemConfigFile(config, parser):
+	    parseSystem(config, parser)
+	    parseTabs(config, parser)
+	    parseData(config, parser)
+	    parseReporting(config, parser)
+	    parseLook(config, parser)
+
+	def parseSystemConfigFile(config, parser):
+	    parseSystem(config, parser)
+	    parseTabs(config, parser)
+	    parseData(config, parser)
+	    parseReporting(config, parser)
+	    parseLook(config, parser)
+
+	def parseConfigFile(config, parser):
+	    parseSystem(config, parser)
+	    parseCapture(config, parser)
+	    parseBuildArgs(config, parser)
+	    parseUpload(config, parser)
+	    parseCompression(config, parser)
+	    parseFireballDetection(config, parser)
+	    parseMeteorDetection(config, parser)
+	    parseStarExtraction(config, parser)
+	    parseCalibration(config, parser)
+	    parseThumbnails(config, parser)
+	    parseStack(config, parser)
+	    parseColors(config, parser)
+
 	def openDataDir(self):
 		path = '/home/lcam'
 		if platform.system() == "Windows":
@@ -121,11 +148,6 @@ class Ui(QtWidgets.QDialog):
 		print('opening ff viewer')
 		subprocess.run(['x-terminal-emulator', '-e', '~/source/LCAM/Scripts/CMNbinViewer.sh'])
 
-	def emailReportToggle(self):
-		self.window = QtWidgets.QMainWindow()
-		self.ui = Ui_EmailReportDialog()
-		self.ui.setupUi(self.window)
-		self.window.show()
 
 	def reportingSetup(self):
 		self.window = QtWidgets.QMainWindow()
