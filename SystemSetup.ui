@@ -24,16 +24,6 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QCheckBox" name="email_report_cbox">
-      <property name="text">
-       <string>Email daily report</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QCheckBox" name="i_am_host_cbox">
       <property name="text">
        <string>This is the host machine</string>
