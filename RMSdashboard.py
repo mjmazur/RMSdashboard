@@ -6,6 +6,8 @@ import subprocess
 
 import pyqtgraph as pg
 
+import 
+
 from PyQt5 import QtWidgets, uic, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
@@ -69,6 +71,58 @@ class Ui(QtWidgets.QDialog):
 		dashconfig = 
 
 		# Read/parse RMS configuration file
+
+	def removeInlineComments(cfgparser, delimiter):
+	    """ Removes inline comments from config file. """
+	    for section in cfgparser.sections():
+	        [cfgparser.set(section, item[0], item[1].split(delimiter)[0].strip()) for item in cfgparser.items(section)]
+
+	def parse(path, strict=True):
+	    """ Parses config file at the given path and returns the corresponding Config object.
+
+	    Arguments:
+	        path: [str] path to file (.config or dfnstation.cfg)
+	        strict: [bool]
+
+	    Returns:
+	        config: [Config]
+
+	    """
+
+	    delimiter = ";"
+
+	    try:
+	        # Python 3
+	        parser = RawConfigParser(inline_comment_prefixes=(delimiter), strict=strict)
+
+	    except:
+	        # Python 2
+	        parser = RawConfigParser()
+
+
+	    parser.read(path)
+
+
+	    # Remove inline comments
+	    removeInlineComments(parser, delimiter)
+	    
+	    config = Config()
+
+	    # Store parsed config file name
+	    config.config_file_name = path
+
+	    # Parse an RMS config file
+	    if os.path.basename(path).endswith('.config'):
+	        parseConfigFile(config, parser)
+
+	    # Parse a DFN config file
+	    elif os.path.basename(path) == 'dfnstation.cfg':
+	        parseDFNStation(config, parser)
+
+	    else:
+	        raise RuntimeError('Unknown config file name: {}'.format(os.path.basename(path)))
+	    
+	    return config
 		
 	def parseSystemConfigFile(config, parser):
 	    parseSystem(config, parser)
