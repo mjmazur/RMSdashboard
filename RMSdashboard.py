@@ -67,7 +67,7 @@ class Ui(QtWidgets.QDialog):
 		self.setup_system_btn.clicked.connect(self.systemSetup)
 
 		# Read/parse dashboard coniguration file
-		dashconfig = 
+		dashconfig = 1
 
 		# Read/parse RMS configuration file
 
