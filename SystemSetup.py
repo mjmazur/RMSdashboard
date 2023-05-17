@@ -61,7 +61,7 @@ class Ui_SystemSetupDialog(object):
 
         self.retranslateUi(SystemSetupDialog)
         QtCore.QMetaObject.connectSlotsByName(SystemSetupDialog)
-        QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
+        QtGui.QGuiApplication.inputMethod().visibleChanged.connect(self.handleVisibleChanged)
 
     def retranslateUi(self, SystemSetupDialog):
         _translate = QtCore.QCoreApplication.translate
