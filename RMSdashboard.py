@@ -211,8 +211,12 @@ class Ui(QtWidgets.QDialog):
 	def systemSetup(self):
 		self.window = QtWidgets.QMainWindow()
 		self.ui = Ui_SystemSetupDialog()
-		self.ui.setupUi(self.window)
+		self.ui.setupUi(self.window, self.topLeft)
 		self.window.show()
+
+	def topLeft(self):
+		topLeftPoint = QApplication.desktop().availableGeometry().topLeft()
+		self.move(topLeftPoint)
 
 def handleVisibleChanged():
 	if not QtGui.QGuiApplication.inputMethod().isVisible():
