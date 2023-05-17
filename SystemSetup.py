@@ -82,12 +82,31 @@ class Ui_SystemSetupDialog(object):
         self.pushButton.setText(_translate("SystemSetupDialog", "Save"))
         self.pushButton_2.setText(_translate("SystemSetupDialog", "Cancel"))
 
+    def handleVisibleChanged():
+        if not QtGui.QGuiApplication.inputMethod().isVisible():
+            return
+        for w in QtGui.QGuiApplication.allWindows():
+            if w.metaObject().className() == "QtVirtualKeyboard::InputView":
+                keyboard = w.findChild(QtCore.QObject, "keyboard")
+                if keyboard is not None:
+                    r = w.geometry()
+                    r.moveTop(keyboard.property("y"))
+                    w.setMask(QtGui.QRegion(r))
+                    return
+
 
 if __name__ == "__main__":
     import sys
+    os.environ['QT_IM_MODULE'] = 'qtvirtualkeyboard'
     app = QtWidgets.QApplication(sys.argv)
+
+    QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
+
     SystemSetupDialog = QtWidgets.QDialog()
+
     ui = Ui_SystemSetupDialog()
     ui.setupUi(SystemSetupDialog)
+    
     SystemSetupDialog.show()
+    
     sys.exit(app.exec_())
