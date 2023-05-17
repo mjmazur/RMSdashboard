@@ -64,6 +64,8 @@ class Ui_SystemSetupDialog(object):
         self.retranslateUi(SystemSetupDialog)
         QtCore.QMetaObject.connectSlotsByName(SystemSetupDialog)
 
+        self.topLeft()
+
     def retranslateUi(self, SystemSetupDialog):
         _translate = QtCore.QCoreApplication.translate
         SystemSetupDialog.setWindowTitle(_translate("SystemSetupDialog", "System Setup"))
@@ -74,3 +76,7 @@ class Ui_SystemSetupDialog(object):
         self.client_list_edit.setText(_translate("SystemSetupDialog", "localhost,localhost,192.168.0.101,192.168.0.102"))
         self.save_system_setup_btn.setText(_translate("SystemSetupDialog", "Save"))
         self.cancel_system_setup_btn.setText(_translate("SystemSetupDialog", "Cancel"))
+
+    def topLeft(self):
+        topLeftPoint = QApplication.desktop().availableGeometry().topLeft()
+        self.move(topLeftPoint)
