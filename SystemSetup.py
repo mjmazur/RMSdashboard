@@ -64,7 +64,7 @@ class Ui_SystemSetupDialog(object):
         self.retranslateUi(SystemSetupDialog)
         QtCore.QMetaObject.connectSlotsByName(SystemSetupDialog)
 
-        QtGui.QGuiApplication.inputMethod().visibleChanged.connect(self.handleVisibleChanged)
+        # QtGui.QGuiApplication.inputMethod().visibleChanged.connect(self.handleVisibleChanged)
 
 
     def retranslateUi(self, SystemSetupDialog):
@@ -78,15 +78,15 @@ class Ui_SystemSetupDialog(object):
         self.save_system_setup_btn.setText(_translate("SystemSetupDialog", "Save"))
         self.cancel_system_setup_btn.setText(_translate("SystemSetupDialog", "Cancel"))
 
-    def handleVisibleChanged():
-        if not QtGui.QGuiApplication.inputMethod().isVisible():
-            print('test')
-            return
-        for w in QtGui.QGuiApplication.allWindows():
-            if w.metaObject().className() == "QtVirtualKeyboard::InputView":
-                keyboard = w.findChild(QtCore.QObject, "keyboard")
-                if keyboard is not None:
-                    r = w.geometry()
-                    r.moveTop(keyboard.property("y"))
-                    w.setMask(QtGui.QRegion(r))
-                    return
+    # def handleVisibleChanged():
+    #     if not QtGui.QGuiApplication.inputMethod().isVisible():
+    #         print('test')
+    #         return
+    #     for w in QtGui.QGuiApplication.allWindows():
+    #         if w.metaObject().className() == "QtVirtualKeyboard::InputView":
+    #             keyboard = w.findChild(QtCore.QObject, "keyboard")
+    #             if keyboard is not None:
+    #                 r = w.geometry()
+    #                 r.moveTop(keyboard.property("y"))
+    #                 w.setMask(QtGui.QRegion(r))
+    #                 return
