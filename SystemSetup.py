@@ -93,7 +93,7 @@ class Ui_SystemSetupDialog(object):
                     r.moveTop(keyboard.property("y"))
                     w.setMask(QtGui.QRegion(r))
                     return
-    QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
+    
 
 
 if __name__ == "__main__":
