@@ -16,7 +16,7 @@ class Ui_SystemSetupDialog(object):
         os.environ['QT_IM_MODULE'] = 'qtvirtualkeyboard'
         SystemSetupDialog.setObjectName("SystemSetupDialog")
         SystemSetupDialog.resize(400, 312)
-        QtGui.QGuiApplication.inputMethod().visibleChanged.connect(self.handleVisibleChanged)
+        
         self.verticalLayoutWidget = QtWidgets.QWidget(SystemSetupDialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 381, 251))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -64,6 +64,8 @@ class Ui_SystemSetupDialog(object):
         self.retranslateUi(SystemSetupDialog)
         QtCore.QMetaObject.connectSlotsByName(SystemSetupDialog)
 
+        QtGui.QGuiApplication.inputMethod().visibleChanged.connect(self.handleVisibleChanged)
+
 
     def retranslateUi(self, SystemSetupDialog):
         _translate = QtCore.QCoreApplication.translate
@@ -78,6 +80,7 @@ class Ui_SystemSetupDialog(object):
 
     def handleVisibleChanged():
         if not QtGui.QGuiApplication.inputMethod().isVisible():
+            print('test')
             return
         for w in QtGui.QGuiApplication.allWindows():
             if w.metaObject().className() == "QtVirtualKeyboard::InputView":
