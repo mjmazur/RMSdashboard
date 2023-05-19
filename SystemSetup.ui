@@ -244,7 +244,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="cancel_report_setup_btn">
+     <widget class="QPushButton" name="cancel_setup_btn">
       <property name="text">
        <string>Cancel</string>
       </property>
