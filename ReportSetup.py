@@ -14,9 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_EmailReportDialog(object):
     def setupUi(self, EmailReportDialog):
         EmailReportDialog.setObjectName("EmailReportDialog")
-        EmailReportDialog.setWindowModality(QtCore.Qt.WindowModal)
         EmailReportDialog.resize(400, 312)
-        EmailReportDialog.setModal(False)
         self.horizontalLayoutWidget = QtWidgets.QWidget(EmailReportDialog)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(9, 9, 381, 264))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")

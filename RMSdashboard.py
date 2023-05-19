@@ -65,11 +65,13 @@ class Ui(QtWidgets.QDialog):
 		self.reboot_btn.clicked.connect(self.rebootSystem)
 		self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
+		
 
 		# Read/parse dashboard coniguration file
 		dashconfig = 1
 
 		# Read/parse RMS configuration file
+
 
 	def removeInlineComments(cfgparser, delimiter):
 	    """ Removes inline comments from config file. """
@@ -206,12 +208,14 @@ class Ui(QtWidgets.QDialog):
 		self.window = QtWidgets.QMainWindow()
 		self.ui = Ui_EmailReportDialog()
 		self.ui.setupUi(self.window)
+		self.ui.cancel_report_setup_btn.clicked.connect(self.window.close)
 		self.window.show()
 
 	def systemSetup(self):
 		self.window = QtWidgets.QMainWindow()
 		self.ui = Ui_SystemSetupDialog()
 		self.ui.setupUi(self.window)
+		self.ui.cancel_system_setup_btn.clicked.connect(self.window.close)
 		self.window.show()
 
 def handleVisibleChanged():
