@@ -16,9 +16,6 @@
   <property name="windowTitle">
    <string>System Setup</string>
   </property>
-  <property name="modal">
-   <bool>false</bool>
-  </property>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>

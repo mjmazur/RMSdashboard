@@ -63,7 +63,7 @@ class Ui(QtWidgets.QDialog):
 		self.last_night_data_btn.clicked.connect(self.openLastNightDir)
 		self.data_dir_btn.clicked.connect(self.openDataDir)
 		self.reboot_btn.clicked.connect(self.rebootSystem)
-		self.setup_reporting_btn.clicked.connect(self.reportingSetup)
+		# self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
 		
 
@@ -204,18 +204,18 @@ class Ui(QtWidgets.QDialog):
 		subprocess.run(['x-terminal-emulator', '-e', '~/source/LCAM/Scripts/CMNbinViewer.sh'])
 
 
-	def reportingSetup(self):
-		self.window = QtWidgets.QMainWindow()
-		self.ui = Ui_EmailReportDialog()
-		self.ui.setupUi(self.window)
-		self.ui.cancel_report_setup_btn.clicked.connect(self.window.close)
-		self.window.show()
+	# def reportingSetup(self):
+	# 	self.window = QtWidgets.QMainWindow()
+	# 	self.ui = Ui_EmailReportDialog()
+	# 	self.ui.setupUi(self.window)
+	# 	self.ui.cancel_report_setup_btn.clicked.connect(self.window.close)
+	# 	self.window.show()
 
 	def systemSetup(self):
 		self.window = QtWidgets.QMainWindow()
 		self.ui = Ui_SystemSetupDialog()
 		self.ui.setupUi(self.window)
-		self.ui.cancel_system_setup_btn.clicked.connect(self.window.close)
+		self.ui.cancel_setup_btn.clicked.connect(self.window.close)
 		self.window.show()
 
 def handleVisibleChanged():
