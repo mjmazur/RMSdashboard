@@ -1,0 +1,47 @@
+Hi ${PERSON_NAME}. This is a test of the LCAM daily email reporting system.
+
+There are still a number of things to implement here. Including, but not limited to...
+
+1. Clear sky hours is intended to just be an ascii representation of when the sky was clear. Something like - 10 oooxxxxxxx - would mean that there were 3 clear sky hours at the start of the night out of a total of 10 hours of darkness.
+2. Number of detections is only reporting for camera #1. I need to implement a monitor to run the email script only after all cameras have finished processing.
+3. Number of meteors / satellites has not been implemented. This will likely be based on number of correlations against TLEs for satellites and # of detections minus # of satellites for meteors.
+4. The NTP line does not seem to work when running this script under screen. I'm not sure why.
+5. The list of satellites and meteors is in progress. There should already be an attachment of the list of all detections.
+
+*** Clear sky hours at a glance ***
+
+*** Number of Detections ***
+${NUM_DETECTIONS_CAM1} | ${NUM_DETECTIONS_CAM2} | ${NUM_DETECTIONS_CAM3} | ${NUM_DETECTIONS_CAM4}
+
+*** Number of Non-meteors Detected ***
+${NUM_SATS_CAM1} | ${NUM_SATS_CAM2} | ${NUM_SATS_CAM3} | ${NUM_SATS_CAM4}
+
+*** Number of Meteors Detected ***
+${NUM_METEORS_CAM1} | ${NUM_METEORS_CAM2} | ${NUM_METEORS_CAM3} | ${NUM_METEORS_CAM4}
+
+*** PC State-of-Health ***
+CPU Load: Max=${MAX_LOAD}%, Min=${MIN_LOAD}%, Average=${AVE_LOAD}%
+Memory Usage: Max=${MAX_MEMORY}%, Min=${MIN_MEMORY}%, Average=${AVE_MEMORY}%
+Free Space: ${FREE_SPACE} GB
+Uptime: ${UPTIME} days
+NTP: ${NTP_SERVER} ${NTP_STRATUM} ${NTP_OFFSET} ${NTP_JITTER}
+
+*** Camera Ping Check ***
+${CAM1_CHECK} | ${CAM2_CHECK} | ${CAM3_CHECK} | ${CAM4_CHECK}
+
+*** Config File ***
+num_cores: ${NUM_CORES}
+width: ${WIDTH}
+height: ${HEIGHT}
+fps: ${FPS}
+data_dir: ${DATA_DIR}
+upload_enabled: ${UPLOAD_ENABLED}
+ang_vel_min: ${ANG_VEL_MIN} deg/s
+ang_vel_max: ${ANG_VEL_MAX} deg/s
+ml_filter: ${ML_FILTER} (if -1, the ML filter is disabled)
+
+*** List of Satellites ***
+See attachments for images and text descriptions of observations.
+
+*** List of Meteors ***
+See attachments for images and text descriptions of observations.
