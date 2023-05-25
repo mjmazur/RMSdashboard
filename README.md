@@ -1,6 +1,8 @@
 # RMSdashboard
  A simple dashboard for the Raspberry Pi Meteor System (RMS) that makes using a touchscreen easy.
 
+![RMSdashboard](https://github.com/mjmazur/RMSdashboard/assets/6187105/a4c80b82-0cfa-4210-8ef6-fd68029cf4dd)
+
  Configuration:
  RMSdashboard is configure through the dash.config file. 
 
