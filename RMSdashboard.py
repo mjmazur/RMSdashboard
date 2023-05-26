@@ -73,85 +73,137 @@ class Ui(QtWidgets.QDialog):
 		# Read/parse RMS configuration file
 
 
+	class Config:
+		def __init__(self):
+
+			# # Get the package root directory
+			# self.rms_root_dir = os.path.abspath(os.path.join(os.path.dirname(RMS.__file__), os.pardir))
+
+			# default config file absolute path
+			self.config_file_name = os.path.join(self.rms_root_dir, '.config')
+
+			##### System
+			self.user_home = "/home/pi"
+			self.config_list = ["~/source/RMS/.config"]
+
+			##### Tabs
+			self.tab_dict = {tab1:"Cam 1"}
+
+			##### Data
+			self.data_dir = "~/RMS_data"
+
+			##### Reporting
+			self.email_report = false
+			self.email_to = ""
+			self.email_cc = ""
+			self.email_subject = "Test Subject"
+			self.smtp_address = "xox.xox.xox.xox"
+			self.smtp_passwd = "password"
+
+			##### Look
+			self.dark_theme = false
+
 	def removeInlineComments(cfgparser, delimiter):
-	    """ Removes inline comments from config file. """
-	    for section in cfgparser.sections():
-	        [cfgparser.set(section, item[0], item[1].split(delimiter)[0].strip()) for item in cfgparser.items(section)]
+		""" Removes inline comments from config file. """
+		for section in cfgparser.sections():
+			[cfgparser.set(section, item[0], item[1].split(delimiter)[0].strip()) for item in cfgparser.items(section)]
 
 	def parse(path, strict=True):
-	    """ Parses config file at the given path and returns the corresponding Config object.
+		""" Parses config file at the given path and returns the corresponding Config object.
 
-	    Arguments:
-	        path: [str] path to file (.config or dfnstation.cfg)
-	        strict: [bool]
+		Arguments:
+			path: [str] path to file (.config or dfnstation.cfg)
+			strict: [bool]
 
-	    Returns:
-	        config: [Config]
+		Returns:
+			config: [Config]
 
-	    """
+		"""
 
-	    delimiter = ";"
+		delimiter = ";"
 
-	    try:
-	        # Python 3
-	        parser = RawConfigParser(inline_comment_prefixes=(delimiter), strict=strict)
+		try:
+			# Python 3
+			parser = RawConfigParser(inline_comment_prefixes=(delimiter), strict=strict)
 
-	    except:
-	        # Python 2
-	        parser = RawConfigParser()
-
-
-	    parser.read(path)
+		except:
+			# Python 2
+			parser = RawConfigParser()
 
 
-	    # Remove inline comments
-	    removeInlineComments(parser, delimiter)
-	    
-	    config = Config()
+		parser.read(path)
 
-	    # Store parsed config file name
-	    config.config_file_name = path
 
-	    # Parse an RMS config file
-	    if os.path.basename(path).endswith('.config'):
-	        parseConfigFile(config, parser)
+		# Remove inline comments
+		removeInlineComments(parser, delimiter)
+		
+		config = Config()
 
-	    # Parse a DFN config file
-	    elif os.path.basename(path) == 'dfnstation.cfg':
-	        parseDFNStation(config, parser)
+		# Store parsed config file name
+		config.config_file_name = path
 
-	    else:
-	        raise RuntimeError('Unknown config file name: {}'.format(os.path.basename(path)))
-	    
-	    return config
+		# Parse an RMS config file
+		if os.path.basename(path).endswith('.config'):
+			parseConfigFile(config, parser)
+
+		# Parse a DFN config file
+		elif os.path.basename(path) == 'dfnstation.cfg':
+			parseDFNStation(config, parser)
+
+		else:
+			raise RuntimeError('Unknown config file name: {}'.format(os.path.basename(path)))
+		
+		return config
+
+
+	def parseSystem(config, parser):
+	
+		section= "System"
+		if not parser.has_section(section):
+			raise RuntimeError("Not configured!")
+		
+		try:
+			config.stationID = parser.get(section, "stationID")
+		except NoOptionError:
+			raise RuntimeError("Not configured!")
+
+
+		if parser.has_option(section, "latitude"):
+			config.latitude = parser.getfloat(section, "latitude")
+
+		if parser.has_option(section, "longitude"):
+			config.longitude = parser.getfloat(section, "longitude")
+
+		if parser.has_option(section, "elevation"):
+			config.elevation = parser.getfloat(section, "elevation")
 		
 	def parseSystemConfigFile(config, parser):
-	    parseSystem(config, parser)
-	    parseTabs(config, parser)
-	    parseData(config, parser)
-	    parseReporting(config, parser)
-	    parseLook(config, parser)
+		parseSystem(config, parser)
+		parseTabs(config, parser)
+		parseData(config, parser)
+		parseReporting(config, parser)
+		parseLook(config, parser)
 
-	def parseSystemConfigFile(config, parser):
-	    parseSystem(config, parser)
-	    parseTabs(config, parser)
-	    parseData(config, parser)
-	    parseReporting(config, parser)
-	    parseLook(config, parser)
+	# def parseSystemConfigFile(config, parser):
+	#     parseSystem(config, parser)
+	#     parseTabs(config, parser)
+	#     parseData(config, parser)
+	#     parseReporting(config, parser)
+	#     parseLook(config, parser)
 
-	def parseConfigFile(config, parser):
-	    parseSystem(config, parser)
-	    parseCapture(config, parser)
-	    parseBuildArgs(config, parser)
-	    parseUpload(config, parser)
-	    parseCompression(config, parser)
-	    parseFireballDetection(config, parser)
-	    parseMeteorDetection(config, parser)
-	    parseStarExtraction(config, parser)
-	    parseCalibration(config, parser)
-	    parseThumbnails(config, parser)
-	    parseStack(config, parser)
-	    parseColors(config, parser)
+	# def parseConfigFile(config, parser):
+	#     parseSystem(config, parser)
+	#     parseCapture(config, parser)
+	#     parseBuildArgs(config, parser)
+	#     parseUpload(config, parser)
+	#     parseCompression(config, parser)
+	#     parseFireballDetection(config, parser)
+	#     parseMeteorDetection(config, parser)
+	#     parseStarExtraction(config, parser)
+	#     parseCalibration(config, parser)
+	#     parseThumbnails(config, parser)
+	#     parseStack(config, parser)
+	#     parseColors(config, parser)
 
 	def openDataDir(self):
 		path = '~/RMS_data'
