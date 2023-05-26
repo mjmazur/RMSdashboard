@@ -154,7 +154,7 @@ class Ui(QtWidgets.QDialog):
 	    parseColors(config, parser)
 
 	def openDataDir(self):
-		path = '/home/lcam'
+		path = '~/RMS_data'
 		if platform.system() == "Windows":
 			os.startfile(path)
 		elif platform.system() == "Darwin":
@@ -164,7 +164,7 @@ class Ui(QtWidgets.QDialog):
 	
 	def startCapture(self):
 		print('Starting capture...')
-		subprocess.Popen(['x-terminal-emulator', '-e', 'python -m RMS.StartCapture -c ~/source/ConfigFiles/CAWE01.config'])
+		subprocess.Popen(['x-terminal-emulator', '-e', 'python -m RMS.StartCapture -c ~/source/RMS/.config'])
 		
 	def killCapture(self):
 		print('Killing StartCapture...')
@@ -176,7 +176,7 @@ class Ui(QtWidgets.QDialog):
 	def editConfig(self):
 		print('Opening config file for editing...')
 		
-		file = '/home/lcam/source/LCAM/.config'
+		file = '/home/lcam/source/RMS/.config'
 		if platform.system() == 'Windows':
 			os.startfile(file)
 		elif platform.system() == "Darwin":
@@ -201,7 +201,7 @@ class Ui(QtWidgets.QDialog):
 		
 	def openFFbinViewer(self):
 		print('opening ff viewer')
-		subprocess.run(['x-terminal-emulator', '-e', '~/source/LCAM/Scripts/CMNbinViewer.sh'])
+		subprocess.run(['x-terminal-emulator', '-e', '~/source/RMS/Scripts/CMNbinViewer.sh'])
 
 
 	# def reportingSetup(self):
@@ -234,6 +234,10 @@ if __name__ == "__main__":
 	os.environ['QT_IM_MODULE'] = 'qtvirtualkeyboard'
 	app = QtWidgets.QApplication(sys.argv)
 
-	QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
+	try:
+		QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
+	except:
+		print("There's a problem with QT Virtual Keyboard. Is it installed?")
+
 	window = Ui()
 	app.exec()
