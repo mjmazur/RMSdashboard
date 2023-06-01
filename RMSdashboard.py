@@ -15,6 +15,8 @@ from PyQt5.QtGui import *
 from ReportSetup import Ui_EmailReportDialog
 from SystemSetup import Ui_SystemSetupDialog
 
+# import ConfigReader as cr
+
 try:
 	# Python 3
 	from configparser import NoOptionError, RawConfigParser
@@ -65,148 +67,9 @@ class Ui(QtWidgets.QDialog):
 		self.reboot_btn.clicked.connect(self.rebootSystem)
 		# self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
-		
-
-		# Read/parse dashboard coniguration file
-		dashconfig = 1
-
-		# Read/parse RMS configuration file
-
-
-	class Config:
-		def __init__(self):
-
-			# # Get the package root directory
-			# self.rms_root_dir = os.path.abspath(os.path.join(os.path.dirname(RMS.__file__), os.pardir))
-
-			# default config file absolute path
-			self.config_file_name = os.path.join(self.rms_root_dir, '.config')
-
-			##### System
-			self.user_home = "/home/pi"
-			self.config_list = ["~/source/RMS/.config"]
-
-			##### Tabs
-			self.tab_dict = {tab1:"Cam 1"}
-
-			##### Data
-			self.data_dir = "~/RMS_data"
-
-			##### Reporting
-			self.email_report = false
-			self.email_to = ""
-			self.email_cc = ""
-			self.email_subject = "Test Subject"
-			self.smtp_address = "xox.xox.xox.xox"
-			self.smtp_passwd = "password"
-
-			##### Look
-			self.dark_theme = false
-
-	def removeInlineComments(cfgparser, delimiter):
-		""" Removes inline comments from config file. """
-		for section in cfgparser.sections():
-			[cfgparser.set(section, item[0], item[1].split(delimiter)[0].strip()) for item in cfgparser.items(section)]
-
-	def parse(path, strict=True):
-		""" Parses config file at the given path and returns the corresponding Config object.
-
-		Arguments:
-			path: [str] path to file (.config or dfnstation.cfg)
-			strict: [bool]
-
-		Returns:
-			config: [Config]
-
-		"""
-
-		delimiter = ";"
-
-		try:
-			# Python 3
-			parser = RawConfigParser(inline_comment_prefixes=(delimiter), strict=strict)
-
-		except:
-			# Python 2
-			parser = RawConfigParser()
-
-
-		parser.read(path)
-
-
-		# Remove inline comments
-		removeInlineComments(parser, delimiter)
-		
-		config = Config()
-
-		# Store parsed config file name
-		config.config_file_name = path
-
-		# Parse an RMS config file
-		if os.path.basename(path).endswith('.config'):
-			parseConfigFile(config, parser)
-
-		# Parse a DFN config file
-		elif os.path.basename(path) == 'dfnstation.cfg':
-			parseDFNStation(config, parser)
-
-		else:
-			raise RuntimeError('Unknown config file name: {}'.format(os.path.basename(path)))
-		
-		return config
-
-
-	def parseSystem(config, parser):
-	
-		section= "System"
-		if not parser.has_section(section):
-			raise RuntimeError("Not configured!")
-		
-		try:
-			config.stationID = parser.get(section, "stationID")
-		except NoOptionError:
-			raise RuntimeError("Not configured!")
-
-
-		if parser.has_option(section, "latitude"):
-			config.latitude = parser.getfloat(section, "latitude")
-
-		if parser.has_option(section, "longitude"):
-			config.longitude = parser.getfloat(section, "longitude")
-
-		if parser.has_option(section, "elevation"):
-			config.elevation = parser.getfloat(section, "elevation")
-		
-	def parseSystemConfigFile(config, parser):
-		parseSystem(config, parser)
-		parseTabs(config, parser)
-		parseData(config, parser)
-		parseReporting(config, parser)
-		parseLook(config, parser)
-
-	# def parseSystemConfigFile(config, parser):
-	#     parseSystem(config, parser)
-	#     parseTabs(config, parser)
-	#     parseData(config, parser)
-	#     parseReporting(config, parser)
-	#     parseLook(config, parser)
-
-	# def parseConfigFile(config, parser):
-	#     parseSystem(config, parser)
-	#     parseCapture(config, parser)
-	#     parseBuildArgs(config, parser)
-	#     parseUpload(config, parser)
-	#     parseCompression(config, parser)
-	#     parseFireballDetection(config, parser)
-	#     parseMeteorDetection(config, parser)
-	#     parseStarExtraction(config, parser)
-	#     parseCalibration(config, parser)
-	#     parseThumbnails(config, parser)
-	#     parseStack(config, parser)
-	#     parseColors(config, parser)
 
 	def openDataDir(self):
-		path = '~/RMS_data'
+		path = config.data_dir
 		if platform.system() == "Windows":
 			os.startfile(path)
 		elif platform.system() == "Darwin":
@@ -238,6 +101,8 @@ class Ui(QtWidgets.QDialog):
 		
 	def openLastNightDir(self):
 		print('Opening the data directory from last night.')
+		print(config.tab_names)
+		print(config.config_list)
 		
 	def rebootSystem(self):
 		qm = QtGui.QMessageBox
@@ -254,7 +119,6 @@ class Ui(QtWidgets.QDialog):
 	def openFFbinViewer(self):
 		print('opening ff viewer')
 		subprocess.run(['x-terminal-emulator', '-e', '~/source/RMS/Scripts/CMNbinViewer.sh'])
-
 
 	# def reportingSetup(self):
 	# 	self.window = QtWidgets.QMainWindow()
@@ -281,7 +145,158 @@ def handleVisibleChanged():
 				r.moveTop(keyboard.property("y"))
 				w.setMask(QtGui.QRegion(r))
 				return
+
+class Config:
+	def __init__(self):
+
+		# # Get the package root directory
+		# self.rms_root_dir = os.path.abspath(os.path.join(os.path.dirname(RMS.__file__), os.pardir))
+
+		# default config file absolute path
+		self.config_file_name = os.path.join('.', 'dash.config')
+
+		##### System
+		self.user_home = "/home/pi"
+		self.config_list = ["~/source/RMS/.config"]
+
+		##### Tabs
+		self.tab_names = ["tab1","tab2"]
+
+		##### Data
+		self.data_dir = "~/RMS_data"
+
+		##### Reporting
+		self.email_report = False
+		self.email_to = ""
+		self.email_cc = ""
+		self.email_subject = "Test Subject"
+		self.smtp_address = "xox.xox.xox.xox"
+		self.smtp_passwd = "password"
+
+		##### Look
+		self.dark_theme = False
 	
+def removeInlineComments(cfgparser, delimiter):
+	""" Removes inline comments from config file. """
+	for section in cfgparser.sections():
+		[cfgparser.set(section, item[0], item[1].split(delimiter)[0].strip()) for item in cfgparser.items(section)]
+
+def parse(path, strict=True):
+	""" Parses config file at the given path and returns the corresponding Config object.
+
+	Arguments:
+		path: [str] path to file (.config or dfnstation.cfg)
+		strict: [bool]
+
+	Returns:
+		config: [Config]
+
+	"""
+
+	delimiter = ";"
+
+	try:
+		# Python 3
+		parser = RawConfigParser(inline_comment_prefixes=(delimiter), strict=strict)
+
+	except:
+		# Python 2
+		parser = RawConfigParser()
+
+	print(type(path))
+	parser.read(path)
+
+
+	# Remove inline comments
+	removeInlineComments(parser, delimiter)
+	
+	config = Config()
+
+	# Store parsed config file name
+	config.config_file_name = path
+
+	# Parse an RMS config file
+	if os.path.basename(path).endswith('.config'):
+		parseConfigFile(config, parser)
+
+	else:
+		raise RuntimeError('Unknown config file name: {}'.format(os.path.basename(path)))
+	
+	return config
+
+def parseConfigFile(config, parser):
+    parseSystem(config, parser)
+    parseTabs(config, parser)
+    parseData(config, parser)
+    parseReporting(config, parser)
+    parseLook(config, parser)
+
+def parseSystem(config, parser):
+
+	section = "System"
+	if not parser.has_section(section):
+		raise RuntimeError("Not configured!")
+	
+	if parser.has_option(section, "user_home"):
+		config.user_home = parser.get(section, "user_home")
+
+	if parser.has_option(section, "config_list"):
+			config.config_list = parser.get(section, "config_list").split(",")
+
+def parseTabs(config, parser):
+	section = "Tabs"
+	if not parser.has_section(section):
+		raise RuntimeError("Not configured!")
+
+	if parser.has_option(section, "tab_names"):
+		config.tab_names = parser.get(section, "tab_names").split(",")
+
+def parseData(config, parser):
+	section = "Data"
+	if not parser.has_section(section):
+		raise RuntimeError("Not configured!")
+
+	if parser.has_option(section, "data_dir"):
+		config.data_dir = parser.get(section, "data_dir")
+
+
+	# if parser.has_option(section, "longitude"):
+	# 	config.longitude = parser.getfloat(section, "longitude")
+
+	# if parser.has_option(section, "elevation"):
+	# 	config.elevation = parser.getfloat(section, "elevation")
+
+def parseReporting(config, parser):
+	section = "Reporting"
+	if not parser.has_section(section):
+		raise RuntimeError("Not configured!")
+
+	if parser.has_option(section, "email_report"):
+		config.email_report = parser.getboolean(section, "email_report")
+
+	if parser.has_option(section, "email_to"):
+		config.email_to = parser.get(section, "email_to")
+
+	if parser.has_option(section, "email_cc"):
+		config.email_cc = parser.get(section, "email_cc")
+
+	if parser.has_option(section, "email_subject"):
+		config.email_subject = parser.get(section, "email_subject")
+
+	if parser.has_option(section, "smtp_address"):
+		config.smtp_address = parser.get(section, "smtp_address")
+
+	if parser.has_option(section, "smtp_passwd"):
+		config.smtp_passwd = parser.get(section, "smtp_passwd")
+
+def parseLook(config, parser):
+	section = "Look"
+	if not parser.has_section(section):
+		raise RuntimeError("Not configured")
+
+	if parser.has_option(section, "dark_theme"):
+		config.dark_theme = parser.getboolean(section, "dark_theme")
+
 if __name__ == "__main__":
 	os.environ['QT_IM_MODULE'] = 'qtvirtualkeyboard'
 	app = QtWidgets.QApplication(sys.argv)
@@ -290,6 +305,10 @@ if __name__ == "__main__":
 		QtGui.QGuiApplication.inputMethod().visibleChanged.connect(handleVisibleChanged)
 	except:
 		print("There's a problem with QT Virtual Keyboard. Is it installed?")
+
+	# Read/parse dashboard configuration file
+	config_path = "dash.config"
+	config = parse(config_path)
 
 	window = Ui()
 	app.exec()
