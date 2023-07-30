@@ -1,5 +1,5 @@
 import sys
-import os
+import os, glob
 import time
 import platform
 import subprocess
@@ -67,6 +67,40 @@ class Ui(QtWidgets.QDialog):
 		self.reboot_btn.clicked.connect(self.rebootSystem)
 		# self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
+
+		self.getLatestImages()
+
+		print(config.config_list[0])
+		print(config.station_list[0])
+
+		# Get the latest capture directory created by each camera
+		current_data_dirs = self.getMultiRMSDirs(config.station_list)
+		print(current_data_dirs)
+
+	def getMultiRMSDirs(self, camera_list):
+		""" Returns a list of the most recent camera data directories
+
+			Arguments:
+				camera_list: 
+		"""
+
+		current_data_dirs = []
+
+		for camera in camera_list:
+			camera = camera.split('.')[0]
+			data_dirs = glob.glob(config.data_dir + '/' + camera + '*')
+
+			print(config.data_dir + '/' + camera)
+			data_dirs.sort()
+			try:
+				current_data_dirs.append(data_dirs[-1])
+			except:
+				print('Nada')
+
+		return(current_data_dirs)
+
+	def getLatestImages(self):
+		print(config.data_dir)
 
 	def openDataDir(self):
 		path = config.data_dir
@@ -158,6 +192,7 @@ class Config:
 		##### System
 		self.user_home = "/home/pi"
 		self.config_list = ["~/source/RMS/.config"]
+		self.station_list = ["CAWE01"]
 
 		##### Tabs
 		self.tab_names = ["tab1","tab2"]
@@ -225,14 +260,13 @@ def parse(path, strict=True):
 	return config
 
 def parseConfigFile(config, parser):
-    parseSystem(config, parser)
-    parseTabs(config, parser)
-    parseData(config, parser)
-    parseReporting(config, parser)
-    parseLook(config, parser)
+	parseSystem(config, parser)
+	parseTabs(config, parser)
+	parseData(config, parser)
+	parseReporting(config, parser)
+	parseLook(config, parser)
 
 def parseSystem(config, parser):
-
 	section = "System"
 	if not parser.has_section(section):
 		raise RuntimeError("Not configured!")
@@ -241,7 +275,10 @@ def parseSystem(config, parser):
 		config.user_home = parser.get(section, "user_home")
 
 	if parser.has_option(section, "config_list"):
-			config.config_list = parser.get(section, "config_list").split(",")
+		config.config_list = parser.get(section, "config_list").split(",")
+
+	if parser.has_option(section, "station_list"):
+		config.station_list = parser.get(section, "station_list").split(",")
 
 def parseTabs(config, parser):
 	section = "Tabs"
