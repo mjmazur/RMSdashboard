@@ -103,7 +103,7 @@ class Ui(QtWidgets.QDialog):
 						directories = current_data_dirs
 					else:
 						directories = previous_data_dirs
-
+		print(directories)
 		for dir in directories:
 			if config.station_list[camera_index] in dir:
 				image_list = glob.glob(dir + "/*.jpg") + glob.glob(dir + "/*.png")
