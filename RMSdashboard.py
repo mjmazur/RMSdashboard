@@ -82,9 +82,12 @@ class Ui(QtWidgets.QDialog):
 		for dir in current_data_dirs:
 			print('dir: %s' % dir)
 
-			if "US003S" in dir:
-				print("found")
-				print(dir)
+			if config.station_list[0] in dir:
+				image_list = glob.glob(dir + "/*.jpg")
+				for image in image_list:
+					if "meteor" in image:
+						im1 = QPixmap(dir + "/" + image)
+						print(image)
 
 	def getMultiRMSDirs(self, camera_list):
 		""" Returns a list of the most recent camera data directories
