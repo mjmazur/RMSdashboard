@@ -84,6 +84,7 @@ class Ui(QtWidgets.QDialog):
 
 			if config.station_list[0] in dir:
 				image_list = glob.glob(dir + "/*.jpg")
+				print(image_list)
 				for image in image_list:
 					if "meteor" in image:
 						im1 = QPixmap(dir + "/" + image)
