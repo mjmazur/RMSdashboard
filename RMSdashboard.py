@@ -94,7 +94,7 @@ class Ui(QtWidgets.QDialog):
 		for dir in current_data_dirs:
 			if config.station_list[camera_index] in dir:
 				for file in os.listdir(dir):
-					if file.endswith(".jpg"):
+					if file.endswith("meteors.jpg"):
 						print("jpg")
 					else:
 						pass
