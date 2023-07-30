@@ -73,26 +73,35 @@ class Ui(QtWidgets.QDialog):
 			camera = camera.split('.')[0]
 			data_dirs = glob.glob(config.data_dir + '/' + camera + '*')
 
-			print(config.data_dir + '/' + camera)
 			data_dirs.sort()
 			try:
 				current_data_dirs.append(data_dirs[-1])
 			except:
-				print('Nada')
+				print('No data directories found.')
 
-		return(current_data_dirs)
+			try:
+				previous_data_dirs.append(data_dirs[-2])
+			except:
+				print("No directories found.")
+
+		return(current_data_dirs, previous_data_dirs)
 
 	def getLatestImages(self, camera_index):
 		# Get the latest capture directory created by each camera
 		current_data_dirs = self.getMultiRMSDirs(config.station_list)
 
 		for dir in current_data_dirs:
-			# print('dir: %s' % dir)
+			if config.station_list[camera_index] in dir:
+				for file in os.listdir(dir):
+					if file.endswith(".jpg"):
+						print("jpg")
+					else:
+						print("no jpg")
 
+
+		for dir in current_data_dirs:
 			if config.station_list[camera_index] in dir:
 				image_list = glob.glob(dir + "/*.jpg") + glob.glob(dir + "/*.png")
-				# print(dir)
-				# print(image_list)
 				for image in image_list:
 					if "meteors.jpg" in image:
 						im1 = QPixmap(image)
