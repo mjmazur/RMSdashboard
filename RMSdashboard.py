@@ -97,7 +97,7 @@ class Ui(QtWidgets.QDialog):
 					if file.endswith(".jpg"):
 						print("jpg")
 					else:
-						print("no jpg")
+						pass
 
 
 		for dir in current_data_dirs:
