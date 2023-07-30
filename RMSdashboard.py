@@ -57,7 +57,7 @@ class Ui(QtWidgets.QDialog):
 				# print(image_list)
 				for image in image_list:
 					if "meteor" in image:
-						im1 = QPixmap(dir + "/" + image)
+						im1 = QPixmap(image)
 						print(image)
 
 					else:
