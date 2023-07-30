@@ -108,11 +108,13 @@ class Ui(QtWidgets.QDialog):
 
 					if "observing_periods.png" in image:
 						im3 = QPixmap(image)
+						print(image)
 					else:
 						im3 = QPixmap('./test3.png')
 
 					if "astrometry.jpg" in image:
 						im4 = QPixmap(image)
+						print(image)
 					else:
 						im4 = QPixmap('./test4.jpg')
 		
