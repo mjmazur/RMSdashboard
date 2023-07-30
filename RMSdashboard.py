@@ -43,7 +43,26 @@ class Ui(QtWidgets.QDialog):
 		#print(self.scene)
 		#self.scene1.addItem(im1)
 		
-		im1 = QPixmap('./test1.jpg')
+		self.getLatestImages()
+
+		# Get the latest capture directory created by each camera
+		current_data_dirs = self.getMultiRMSDirs(config.station_list)
+
+		for dir in current_data_dirs:
+			# print('dir: %s' % dir)
+
+			if config.station_list[0] in dir:
+				image_list = glob.glob(dir + "/*.jpg")
+				# print(dir)
+				# print(image_list)
+				for image in image_list:
+					if "meteor" in image:
+						im1 = QPixmap(dir + "/" + image)
+						print(image)
+
+					else:
+						im1 = QPixmap('./test1.jpg')
+
 		im2 = QPixmap('./test2.png')
 		im3 = QPixmap('./test3.png')
 		im4 = QPixmap('./test4.jpg')
@@ -68,28 +87,7 @@ class Ui(QtWidgets.QDialog):
 		# self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
 
-		self.getLatestImages()
 
-		# print(config.config_list[0])
-		# print(config.station_list[0])
-
-		# Get the latest capture directory created by each camera
-		current_data_dirs = self.getMultiRMSDirs(config.station_list)
-		
-		# print("1")
-		# print(current_data_dirs)
-
-		for dir in current_data_dirs:
-			print('dir: %s' % dir)
-
-			if config.station_list[0] in dir:
-				image_list = glob.glob(dir + "/*.jpg")
-				print(dir)
-				print(image_list)
-				for image in image_list:
-					if "meteor" in image:
-						im1 = QPixmap(dir + "/" + image)
-						print(image)
 
 	def getMultiRMSDirs(self, camera_list):
 		""" Returns a list of the most recent camera data directories
