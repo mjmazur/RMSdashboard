@@ -104,7 +104,12 @@ class Ui(QtWidgets.QDialog):
 						break
 					else:
 						directories = previous_data_dirs
-		print(directories)
+
+		im1 = QPixmap('./test1.jpg')
+		im2 = QPixmap('./test2.png')
+		im3 = QPixmap('./test3.png')
+		im4 = QPixmap('./test4.jpg')
+
 		for dir in directories:
 			if config.station_list[camera_index] in dir:
 				image_list = glob.glob(dir + "/*.jpg") + glob.glob(dir + "/*.png")
@@ -112,27 +117,19 @@ class Ui(QtWidgets.QDialog):
 					if "meteors.jpg" in image:
 						im1 = QPixmap(image)
 						print(image)
-					else:
-						im1 = QPixmap('./test1.jpg')
-						print("set test image")
 
 					if "radiants.png" in image:
 						im2 = QPixmap(image)
 						print(image)
-					else:
-						im2 = QPixmap('./test2.png')
 
 					if "observing_periods.png" in image:
 						im3 = QPixmap(image)
 						print(image)
-					else:
-						im3 = QPixmap('./test3.png')
-
+						
 					if "astrometry.jpg" in image:
 						im4 = QPixmap(image)
 						print(image)
-					else:
-						im4 = QPixmap('./test4.jpg')
+						
 		
 		self.image1_lbl.setPixmap(im1)
 		self.image2_lbl.setPixmap(im2)
