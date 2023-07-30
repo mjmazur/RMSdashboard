@@ -114,6 +114,7 @@ class Ui(QtWidgets.QDialog):
 						print(image)
 					else:
 						im1 = QPixmap('./test1.jpg')
+						print("set test image")
 
 					if "radiants.png" in image:
 						im2 = QPixmap(image)
