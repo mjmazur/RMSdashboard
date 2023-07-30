@@ -94,6 +94,7 @@ class Ui(QtWidgets.QDialog):
 				camera_index:
 		"""
 		current_data_dirs, previous_data_dirs = self.getMultiRMSDirs(config.station_list)
+		print(current_data_dirs)
 
 		for dir in current_data_dirs:
 			if config.station_list[camera_index] in dir:
@@ -101,8 +102,10 @@ class Ui(QtWidgets.QDialog):
 					if file.endswith("meteors.jpg"):
 						print("jpg")
 						directories = current_data_dirs
+						break
 					else:
 						directories = previous_data_dirs
+
 		print(directories)
 		for dir in directories:
 			if config.station_list[camera_index] in dir:
