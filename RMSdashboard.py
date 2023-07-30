@@ -68,6 +68,7 @@ class Ui(QtWidgets.QDialog):
 		"""
 
 		current_data_dirs = []
+		previous_data_dirs = []
 
 		for camera in camera_list:
 			camera = camera.split('.')[0]
