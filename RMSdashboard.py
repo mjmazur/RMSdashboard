@@ -43,7 +43,7 @@ class Ui(QtWidgets.QDialog):
 		#print(self.scene)
 		#self.scene1.addItem(im1)
 		
-		self.getLatestImages(0)
+		self.setLatestImages(0)
 		
 		# Display the GUI
 		self.show()
@@ -87,8 +87,12 @@ class Ui(QtWidgets.QDialog):
 
 		return(current_data_dirs, previous_data_dirs)
 
-	def getLatestImages(self, camera_index):
-		# Get the latest capture directory created by each camera
+	def setLatestImages(self, camera_index):
+		""" Get the latest capture directory with images and set them in the current tab
+
+			Arguments:
+				camera_index:
+		"""
 		current_data_dirs, previous_data_dirs = self.getMultiRMSDirs(config.station_list)
 
 		for dir in current_data_dirs:
@@ -96,11 +100,11 @@ class Ui(QtWidgets.QDialog):
 				for file in os.listdir(dir):
 					if file.endswith("meteors.jpg"):
 						print("jpg")
+						directories = current_data_dirs
 					else:
-						pass
+						directories = previous_data_dirs
 
-
-		for dir in current_data_dirs:
+		for dir in directories:
 			if config.station_list[camera_index] in dir:
 				image_list = glob.glob(dir + "/*.jpg") + glob.glob(dir + "/*.png")
 				for image in image_list:
