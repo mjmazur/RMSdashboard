@@ -1,4 +1,5 @@
 #!/bin/bash
+# This is taken from the original iStream shell scrip
 echo ""
 echo "START EXTERNAL SCRIPT..." 
 echo ""
@@ -13,14 +14,13 @@ fi
 
 
 echo "CHECKING DEPENDENCIES"
-if [[ ( $( command -v avconv ) || $( command -v ffmpeg ) ) && $( command -v convert ) ]]; then
+if [[ ( $( command -v ffmpeg ) ) && $( command -v convert ) ]]; then
         echo "ALL DEPENDENCIES ALREADY INSTALLED!"
 else
 	if $( sudo -n true ) ; then
         echo "INSTALLING DEPENDENCIES..."
         sudo apt-get update
         sudo apt-get -y install imagemagick 
-        sudo apt-get -y install libav-tools
         sudo apt-get -y install ffmpeg
 	sudo apt-get -y install curl
     else
@@ -91,6 +91,22 @@ function generate_captured_stack {
 	fi
 }
 
+function generate_timelapse {
+	SECONDS_LIMIT=$(expr $REMAINING_SECONDS - 120)
+	if ($LEVEL_1); then
+		cd ~/source/RMS
+		python -m Utils.GenerateTimelapse $CAPTURED_DIR_NAME
+		mv $TMP_VIDEO_FILE $VIDEO_FILE
+		ffmpeg -i $VIDEO_FILE -vf scale="720x480" $SMALL_VIDEO_FILE
+	fi
+	if ($LEVEL_2); then
+		cd ~/source/RMS
+		python -m Utils.GenerateTimelapse $CAPTURED_DIR_NAME
+		mv $TMP_VIDEO_FILE $VIDEO_FILE
+		ffmpeg -i $VIDEO_FILE -vf scale="720:480" $SMALL_VIDEO_FILE
+	fi
+}
+
 VAR_1="1"
 VAR_2="1"
 
@@ -98,6 +114,10 @@ if [ $VAR_1 = $VAR_2 ]; then
 	echo "GENERATE FULL NIGHT STACK..."
 	generate_captured_stack
 	echo ""
+
+	# echo "GENERATE VIDEO..."
+	# generate_timelapse
+	# echo ""
 fi
 echo "END EXTERNAL SCRIPT..."
 echo ""
