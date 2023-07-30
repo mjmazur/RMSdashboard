@@ -80,8 +80,8 @@ class Ui(QtWidgets.QDialog):
 		# print(current_data_dirs)
 
 		for dir in current_data_dirs:
-			print('dir')
-			print(dir)
+			print('dir: %s' % dir)
+
 			if "US003G" in dir:
 				print("found")
 				print(dir)
