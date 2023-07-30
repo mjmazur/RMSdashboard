@@ -70,12 +70,21 @@ class Ui(QtWidgets.QDialog):
 
 		self.getLatestImages()
 
-		print(config.config_list[0])
-		print(config.station_list[0])
+		# print(config.config_list[0])
+		# print(config.station_list[0])
 
 		# Get the latest capture directory created by each camera
 		current_data_dirs = self.getMultiRMSDirs(config.station_list)
+		
+		print("1")
 		print(current_data_dirs)
+
+		for dir in current_data_dirs:
+			print('dir')
+			print(dir)
+			if "US003G" in dir:
+				print("found")
+				print(dir)
 
 	def getMultiRMSDirs(self, camera_list):
 		""" Returns a list of the most recent camera data directories
