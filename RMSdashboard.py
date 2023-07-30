@@ -88,7 +88,7 @@ class Ui(QtWidgets.QDialog):
 
 	def getLatestImages(self, camera_index):
 		# Get the latest capture directory created by each camera
-		current_data_dirs = self.getMultiRMSDirs(config.station_list)
+		current_data_dirs, previous_data_dirs = self.getMultiRMSDirs(config.station_list)
 
 		for dir in current_data_dirs:
 			if config.station_list[camera_index] in dir:
