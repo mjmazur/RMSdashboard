@@ -43,34 +43,7 @@ class Ui(QtWidgets.QDialog):
 		#print(self.scene)
 		#self.scene1.addItem(im1)
 		
-		self.getLatestImages()
-
-		# Get the latest capture directory created by each camera
-		current_data_dirs = self.getMultiRMSDirs(config.station_list)
-
-		for dir in current_data_dirs:
-			# print('dir: %s' % dir)
-
-			if config.station_list[0] in dir:
-				image_list = glob.glob(dir + "/*.jpg")
-				# print(dir)
-				# print(image_list)
-				for image in image_list:
-					if "meteor" in image:
-						im1 = QPixmap(image)
-						print(image)
-
-					else:
-						im1 = QPixmap('./test1.jpg')
-
-		im2 = QPixmap('./test2.png')
-		im3 = QPixmap('./test3.png')
-		im4 = QPixmap('./test4.jpg')
-		
-		self.image1_lbl.setPixmap(im1)
-		self.image2_lbl.setPixmap(im2)
-		self.image3_lbl.setPixmap(im3)
-		self.image4_lbl.setPixmap(im4)
+		self.getLatestImages(0)
 		
 		# Display the GUI
 		self.show()
@@ -86,8 +59,6 @@ class Ui(QtWidgets.QDialog):
 		self.reboot_btn.clicked.connect(self.rebootSystem)
 		# self.setup_reporting_btn.clicked.connect(self.reportingSetup)
 		self.setup_system_btn.clicked.connect(self.systemSetup)
-
-
 
 	def getMultiRMSDirs(self, camera_list):
 		""" Returns a list of the most recent camera data directories
@@ -111,8 +82,44 @@ class Ui(QtWidgets.QDialog):
 
 		return(current_data_dirs)
 
-	def getLatestImages(self):
-		print(config.data_dir)
+	def getLatestImages(self, camera_index):
+		# Get the latest capture directory created by each camera
+		current_data_dirs = self.getMultiRMSDirs(config.station_list)
+
+		for dir in current_data_dirs:
+			# print('dir: %s' % dir)
+
+			if config.station_list[camera_index] in dir:
+				image_list = glob.glob(dir + "/*.jpg") + glob.glob(dir + "/*.png")
+				# print(dir)
+				# print(image_list)
+				for image in image_list:
+					if "meteors.jpg" in image:
+						im1 = QPixmap(image)
+						print(image)
+					else:
+						im1 = QPixmap('./test1.jpg')
+
+					if "radiants.png" in image:
+						im2 = QPixmap(image)
+						print(image)
+					else:
+						im2 = QPixmap('./test2.png')
+
+					if "observing_periods.png" in image:
+						im3 = QPixmap(image)
+					else:
+						im3 = QPixmap('./test3.png')
+
+					if "astrometry.jpg" in image:
+						im4 = QPixmap(image)
+					else:
+						im4 = QPixmap('./test4.jpg')
+		
+		self.image1_lbl.setPixmap(im1)
+		self.image2_lbl.setPixmap(im2)
+		self.image3_lbl.setPixmap(im3)
+		self.image4_lbl.setPixmap(im4)
 
 	def openDataDir(self):
 		path = config.data_dir
